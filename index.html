@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database</title>
+</head>
+<body>
+ 
+    
+
+    <button id="post">POST</button>
+    <script>
+      document.querySelector("#post").addEventListener("click", post);
+      function get() {
+        fetch("https://wpwwqvgfhujdmuhuonhw.supabase.co/rest/v1/Wines", {
+          method: "get",
+          headers: {
+            apikey:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indwd3dxdmdmaHVqZG11aHVvbmh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzk5MTkzNDIsImV4cCI6MTk5NTQ5NTM0Mn0.-aeCmmlFMdQmyu60oKkWhMqwJ9uh2dOAjfeHuHyUQV8",
+          },
+        })
+          .then((e) => e.json())
+          .then((e) => console.log(e));
+      }
+      function post() {
+        const newWine = {
+          name: "Dannie's Wine",
+          grapes: ["pinor lightblue"],
+          year: 1986,
+          type: "white",
+          origin: {
+            country: "Denmark",
+            region: "Nordsjælland",
+          },
+          isGood: false,
+        };
+        fetch("https://wpwwqvgfhujdmuhuonhw.supabase.co/rest/v1/Wines", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            Prefer: "return=representation",
+            apikey:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indwd3dxdmdmaHVqZG11aHVvbmh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzk5MTkzNDIsImV4cCI6MTk5NTQ5NTM0Mn0.-aeCmmlFMdQmyu60oKkWhMqwJ9uh2dOAjfeHuHyUQV8",
+          },
+          body: JSON.stringify(newWine),
+        })
+          .then((e) => e.json())
+          .then((e) => console.log(e));
+      }
+    </script>
+</body>
+</html>
